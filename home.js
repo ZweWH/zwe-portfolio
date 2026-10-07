@@ -3,6 +3,7 @@ const filters = document.querySelector("#filters");
 const slideLeft = document.querySelector("#slide-left");
 const slideRight = document.querySelector("#slide-right");
 const indicators = document.querySelector("#carousel-indicators");
+const autoplayToggle = document.querySelector("#carousel-toggle");
 const carouselMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 const categories = ["All", ...new Set(projects.map(project => project.category))];
 
@@ -10,6 +11,81 @@ let visibleProjects = projects;
 let scrollStops = [];
 let scrollFrame = 0;
 let resizeFrame = 0;
+let activeStopIndex = 0;
+let autoplayFrame = 0;
+let lastAutoplayTime = 0;
+let elapsed = 0;
+let userPaused = false;
+let pointerOverRail = false;
+let touchingRail = false;
+let railVisible = false;
+let isScrolling = false;
+let scrollSettleTimer = 0;
+const AUTO_MOVE_DELAY = 3000;
+
+function canAutoplay() {
+  return scrollStops.length > 1 && railVisible && !document.hidden &&
+    !carouselMotionPreference.matches && !userPaused && !pointerOverRail &&
+    !touchingRail && !grid.contains(document.activeElement) && !isScrolling;
+}
+
+function drawCountdown() {
+  indicators?.style.setProperty("--carousel-progress", String(Math.min(elapsed / AUTO_MOVE_DELAY, 1)));
+}
+
+function resetCountdown() {
+  elapsed = 0;
+  lastAutoplayTime = 0;
+  drawCountdown();
+}
+
+function syncAutoplay() {
+  const available = scrollStops.length > 1 && !carouselMotionPreference.matches;
+  const playing = canAutoplay();
+  if (autoplayToggle) {
+    autoplayToggle.hidden = !available;
+    autoplayToggle.textContent = userPaused ? "Play" : "Pause";
+    autoplayToggle.setAttribute("aria-pressed", String(userPaused));
+    autoplayToggle.setAttribute("aria-label", userPaused ? "Resume automatic project scrolling" : "Pause automatic project scrolling");
+  }
+  if (indicators) indicators.dataset.autoplay = !available ? "disabled" : playing ? "playing" : "paused";
+  if (playing && !autoplayFrame) autoplayFrame = requestAnimationFrame(tickAutoplay);
+  if (!playing) {
+    cancelAnimationFrame(autoplayFrame);
+    autoplayFrame = 0;
+    lastAutoplayTime = 0;
+  }
+}
+
+function tickAutoplay(now) {
+  autoplayFrame = 0;
+  if (!canAutoplay()) return syncAutoplay();
+  if (lastAutoplayTime) elapsed += now - lastAutoplayTime;
+  lastAutoplayTime = now;
+  drawCountdown();
+  if (elapsed >= AUTO_MOVE_DELAY) {
+    const nextIndex = (activeStopIndex + 1) % scrollStops.length;
+    scrollToPosition(scrollStops[nextIndex].position);
+    return;
+  }
+  autoplayFrame = requestAnimationFrame(tickAutoplay);
+}
+
+function finishScrolling() {
+  clearTimeout(scrollSettleTimer);
+  isScrolling = false;
+  updateCarouselControls();
+  syncAutoplay();
+}
+
+function beginScrolling() {
+  if (!isScrolling) resetCountdown();
+  isScrolling = true;
+  syncAutoplay();
+  clearTimeout(scrollSettleTimer);
+  // Fallback for browsers without scrollend; renewed for every scroll event.
+  scrollSettleTimer = setTimeout(finishScrolling, 180);
+}
 
 function renderFilters() {
   filters.setAttribute("role", "group");
@@ -68,6 +144,7 @@ function createProjectCards(projectList) {
 }
 
 function renderProjects() {
+  resetCountdown();
   grid.classList.toggle("single-project", visibleProjects.length === 1);
   // Each project is one normal link; the browser owns wheel and touch scrolling.
   grid.innerHTML = createProjectCards(visibleProjects);
@@ -79,6 +156,7 @@ function renderProjects() {
 }
 
 function measureScrollStops() {
+  resetCountdown();
   const cards = [...grid.querySelectorAll(".project-card")];
   const maxScroll = Math.max(0, grid.scrollWidth - grid.clientWidth);
   const firstLeft = cards[0]?.offsetLeft || 0;
@@ -103,6 +181,7 @@ function measureScrollStops() {
     `).join("");
   }
   updateCarouselControls();
+  syncAutoplay();
 }
 
 function updateCarouselControls() {
@@ -118,6 +197,11 @@ function updateCarouselControls() {
     }
   });
 
+  if (closestIndex !== activeStopIndex) {
+    activeStopIndex = closestIndex;
+    resetCountdown();
+  }
+
   indicators?.querySelectorAll(".carousel-dot").forEach((dot, index) => {
     const active = index === closestIndex;
     dot.classList.toggle("active", active);
@@ -126,6 +210,8 @@ function updateCarouselControls() {
 }
 
 function scrollToPosition(position) {
+  resetCountdown();
+  beginScrolling();
   grid.scrollTo({
     left: position,
     behavior: carouselMotionPreference.matches ? "instant" : "smooth"
@@ -148,12 +234,56 @@ slideLeft.addEventListener("click", () => moveCarousel(-1));
 slideRight.addEventListener("click", () => moveCarousel(1));
 
 grid.addEventListener("scroll", () => {
+  beginScrolling();
   if (scrollFrame) return;
   scrollFrame = requestAnimationFrame(() => {
     scrollFrame = 0;
     updateCarouselControls();
   });
 }, { passive: true });
+grid.addEventListener("scrollend", finishScrolling);
+
+grid.addEventListener("pointerenter", event => {
+  if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+  pointerOverRail = true;
+  syncAutoplay();
+});
+grid.addEventListener("pointerleave", () => {
+  pointerOverRail = false;
+  syncAutoplay();
+});
+grid.addEventListener("pointerdown", event => {
+  if (event.pointerType !== "touch") return;
+  touchingRail = true;
+  syncAutoplay();
+});
+function finishTouch() {
+  if (!touchingRail) return;
+  touchingRail = false;
+  syncAutoplay();
+}
+window.addEventListener("pointerup", finishTouch);
+window.addEventListener("pointercancel", finishTouch);
+grid.addEventListener("focusin", syncAutoplay);
+grid.addEventListener("focusout", () => queueMicrotask(syncAutoplay));
+document.addEventListener("visibilitychange", syncAutoplay);
+window.addEventListener("pageshow", () => {
+  lastAutoplayTime = 0;
+  syncAutoplay();
+});
+autoplayToggle?.addEventListener("click", () => {
+  userPaused = !userPaused;
+  syncAutoplay();
+});
+
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(entries => {
+    railVisible = entries[0].isIntersecting;
+    syncAutoplay();
+  }, { threshold: 0.2 }).observe(grid);
+} else {
+  railVisible = true;
+}
 
 grid.addEventListener("keydown", event => {
   if (event.target !== grid || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
@@ -178,10 +308,12 @@ window.addEventListener("resize", () => {
 });
 
 carouselMotionPreference.addEventListener("change", () => {
+  resetCountdown();
   if (carouselMotionPreference.matches) {
     // Stop an in-flight smooth scroll as soon as reduced motion is requested.
     grid.scrollTo({ left: grid.scrollLeft, behavior: "instant" });
   }
+  syncAutoplay();
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();

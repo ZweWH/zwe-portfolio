@@ -11,7 +11,7 @@ https://zwewh.github.io/zwe-portfolio/
 
 - `index.html`: introduction, career, skills and contact details.
 - `projects.js`: project descriptions, cover images, galleries and videos.
-- `home.js`: project filters and accessible, manually controlled carousel.
+- `home.js`: project filters and accessible carousel with optional automatic scrolling.
 - `project.js`: shared case-study rendering, comparison slider and image lightbox.
 - `styles.css`: base visual design.
 - `motion.css` and `animations.js`: subtle one-time reveals, staggered entrances, hover effects, reading progress and active navigation.
@@ -39,9 +39,10 @@ In repository Settings → Pages, the source should be **Deploy from a branch**,
 
 - Native smooth anchor scrolling and browser page transitions where supported.
 - One-time reveals, with staggered hero text and capability cards.
-- No automatic carousel movement or vertical-wheel interception.
+- The carousel advances every 3 seconds, with the active dot filling to show the countdown. There is no vertical-wheel interception.
+- Automatic scrolling pauses while hovering over the rail, focusing it with the keyboard, touching it, scrolling it out of view or switching browser tabs. The Pause/Play control also lets visitors pause it explicitly.
 - Carousel arrows, touch/trackpad scrolling and keyboard arrows/Home/End when the rail is focused.
-- The system's reduced-motion preference disables animated scrolling and decorative movement, including preference changes while the page is open.
+- The system's reduced-motion preference disables carousel autoplay, animated scrolling and decorative movement, including preference changes while the page is open.
 - Core homepage content stays visible without JavaScript; project rendering needs JavaScript.
 
 Before adding new project media, use material you are permitted to publish and remove internal project identifiers where necessary.
