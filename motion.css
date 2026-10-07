@@ -1,0 +1,125 @@
+/* Content remains readable when JavaScript or animation is unavailable. */
+:root { --motion-ease: cubic-bezier(.22, 1, .36, 1); }
+html { scroll-padding-top: 100px; }
+body.page-enter, body.page-enter.page-ready, body.page-leave {
+  opacity: 1; transform: none; transition: none;
+}
+.reveal-ready, .reveal-stagger > * { opacity: 1; transform: none; will-change: auto; }
+.reveal-stagger.is-visible > * { transition-delay: 0s; }
+.motion-enabled .motion-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease var(--reveal-delay, 0ms),
+    transform .85s var(--motion-ease) var(--reveal-delay, 0ms), box-shadow .3s ease;
+}
+.motion-enabled .motion-reveal.is-visible,
+.motion-enabled .motion-reveal:focus-within { opacity: 1; transform: none; }
+.motion-enabled .portrait-card.motion-reveal { --reveal-delay: 160ms; }
+.reading-progress {
+  position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; pointer-events: none;
+}
+.site-header {
+  top: 12px;
+  transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.site-header:hover, .site-header.is-scrolled {
+  background: rgba(255,255,255,.92); border-color: rgba(0,0,0,.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+}
+nav a { position: relative; transition: color .2s ease; }
+nav a::after {
+  content: ''; position: absolute; height: 2px; left: 0; right: 0; bottom: -6px;
+  border-radius: 2px; background: var(--accent); transform: scaleX(0);
+  transform-origin: left; transition: transform .3s var(--motion-ease);
+}
+nav a:hover::after, nav a[aria-current]::after { transform: scaleX(1); }
+nav a[aria-current] { color: var(--text); }
+.hero-split { position: relative; isolation: isolate; }
+.hero-split::before {
+  content: ''; position: absolute; z-index: -1; inset: 0 -12px;
+  background: radial-gradient(ellipse at 78% 40%, rgba(125,184,226,.15), transparent 55%);
+  pointer-events: none;
+}
+.hero-content h1 { text-wrap: balance; }
+.portrait-card { aspect-ratio: 3 / 4; min-height: 0; }
+.portrait-card img { height: 100%; min-height: 0; object-fit: cover; }
+.portrait-label strong { color: white; }
+.scroll-cue {
+  display: inline-flex; align-items: center; gap: 12px; width: fit-content; margin-top: 34px;
+  color: var(--muted); font-size: .76rem; letter-spacing: .09em; text-transform: uppercase;
+}
+.scroll-cue span {
+  display: grid; place-items: center; height: 28px; width: 28px;
+  border: 1px solid var(--line); border-radius: 50%; transition: transform .3s var(--motion-ease);
+}
+.scroll-cue:hover span { transform: translateY(3px); }
+.button { transition: transform .3s var(--motion-ease), box-shadow .3s ease, background .2s ease; }
+.button.primary:hover { box-shadow: 0 8px 24px rgba(0,102,204,.2); }
+.project-rail {
+  position: relative; touch-action: auto; scroll-snap-type: x proximity; scroll-behavior: auto;
+}
+.project-rail .project-card { scroll-snap-align: start; user-select: auto; }
+.project-card .card-media { aspect-ratio: 16 / 11; min-height: 0; }
+.project-card .card-image { height: 100%; object-fit: cover; }
+.project-card .card-content { transform: none; }
+.card-media.missing-media {
+  background: radial-gradient(ellipse at 20% 15%, #d7e8f6, transparent 65%), linear-gradient(135deg, #edf2f6, #e3e6ee);
+}
+.card-media.missing-media::before { color: #90a2b4; }
+.card-media.missing-media::after { color: #5d6c7c; }
+.slider-controls button:disabled { opacity: .35; cursor: default; transform: none; }
+.carousel-indicators { gap: 4px; }
+.carousel-dot, .carousel-dot.active {
+  width: 32px; height: 32px; background: transparent;
+  display: grid; place-items: center; overflow: visible;
+}
+.carousel-dot:hover { background: transparent; transform: none; }
+.carousel-dot span, .carousel-dot.active span {
+  position: static; display: block; width: 7px; height: 7px; border-radius: 20px;
+  background: #a1a1a6; transition: width .3s var(--motion-ease), background .3s ease;
+}
+.carousel-dot.active span { width: 24px; background: var(--text); }
+.carousel-dot:hover span { background: var(--text); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+.comparison:focus-within { outline: 3px solid var(--accent); outline-offset: 5px; }
+.skip-link {
+  position: fixed; z-index: 101; top: 16px; left: 16px; padding: 10px 18px;
+  background: white; border-radius: 12px; transform: translateY(-160%);
+}
+.skip-link:focus { transform: none; }
+.no-script { padding: 20px; border: 1px solid var(--line); border-radius: 16px; }
+@media (hover: hover) and (pointer: fine) {
+  .motion-enabled .project-card.is-visible:hover,
+  .motion-enabled .skill-card.is-visible:hover { transform: translateY(-4px); transition-delay: 0s; }
+  .project-card:hover .card-image { transform: scale(1.025); }
+}
+@media (max-width: 900px) {
+  .hero-split { padding-top: 64px; gap: 42px; }
+  .portrait-card { width: min(100%, 440px); min-height: 0; }
+  .portrait-card img { min-height: 0; }
+}
+@media (max-width: 620px) {
+  .site-header { padding: 12px 14px; }
+  .site-header nav { gap: 12px; }
+  .site-header nav a { font-size: .76rem; }
+  .hero-content h1 { font-size: clamp(2.65rem, 10.8vw, 4.5rem); }
+  .hero-content .eyebrow { font-size: .64rem; letter-spacing: .1em; }
+  .hero-split { padding-top: 56px; }
+  .slider-controls { display: flex; }
+  .project-toolbar { gap: 18px; }
+  .slider-controls button { width: 40px; height: 40px; }
+}
+/* Native transitions preserve normal links, modifiers and browser Back. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation-duration: .18s; }
+::view-transition-new(root) { animation-duration: .24s; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .motion-enabled .motion-reveal { opacity: 1; transform: none; }
+  .project-card:hover, .skill-card:hover, .button:hover, .software-item:hover,
+  .next-project:hover, .project-card:hover .card-image, .gallery-item:hover img,
+  .scroll-cue:hover span { transform: none; }
+  @view-transition { navigation: none; }
+}

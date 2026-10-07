@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project case study by Zwe Htet Aung.">
+  <title>Project | Zwe Htet Aung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f5f5f7">
+  <script src="projects.js" defer></script>
+  <script src="project.js" defer></script>
+  <script src="animations.js" defer></script>
+</head>
+<body class="page-enter">
+  <a class="skip-link" href="#project-page">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="index.html">ZWE.</a>
+    <nav aria-label="Project navigation">
+      <a href="index.html#work">All Work</a>
+      <a href="index.html#about">About</a>
+      <a href="assets/documents/Zwe-Htet-Aung-CV.pdf">Resume</a>
+    </nav>
+  </header>
+
+  <main id="project-page">
+    <section class="project-loading">
+      <p>Loading project…</p>
+      <noscript><p class="no-script">Please enable JavaScript to read this case study, or <a href="index.html">return to the portfolio</a>.</p></noscript>
+    </section>
+  </main>
+
+  <dialog id="lightbox">
+    <button class="lightbox-close" aria-label="Close image">×</button>
+    <button class="lightbox-arrow previous" aria-label="Previous image">‹</button>
+    <img id="lightbox-image" alt="">
+    <button class="lightbox-arrow next" aria-label="Next image">›</button>
+    <p id="lightbox-caption"></p>
+  </dialog>
+
+  <footer>
+    <p>© <span id="year"></span> Zwe Htet Aung.</p>
+  </footer>
+</body>
+</html>

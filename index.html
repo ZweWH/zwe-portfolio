@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zwe Htet Aung — BIM and digital construction portfolio.">
+  <title>Zwe Htet Aung | BIM & Digital Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta property="og:title" content="Zwe Htet Aung | BIM & Digital Engineering">
+  <meta property="og:description" content="BIM coordination, Revit automation and digital construction. Explore my selected work and career journey.">
+  <meta property="og:type" content="website">
+  <script src="projects.js" defer></script>
+  <script src="home.js" defer></script>
+  <script src="animations.js" defer></script>
+</head>
+<body class="page-enter">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <a class="logo" href="index.html">ZWE.</a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#journey">Journey</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/documents/Zwe-Htet-Aung-CV.pdf">Resume</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero hero-split" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">BIM · AUTOMATION · DIGITAL CONSTRUCTION</p>
+        <h1>Building smarter ways to coordinate, explain and deliver construction.</h1>
+        <p class="hero-copy">
+          BIM Designer focused on MEP coordination, Revit automation, 4D sequencing,
+          vehicle analysis, VR and digital fabrication.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">View selected work</a>
+          <a class="button secondary" href="assets/documents/Zwe-Htet-Aung-CV.pdf">Download CV</a>
+        </div>
+        <a class="scroll-cue" href="#work"><span aria-hidden="true">↓</span> Explore my work</a>
+      </div>
+      <div class="portrait-card" data-placeholder="Portrait of Zwe Htet Aung">
+        <img src="assets/images/profile-photo-2.png" alt="Portrait of Zwe Htet Aung" fetchpriority="high" decoding="async" onerror="this.closest('.portrait-card').classList.add('missing-media'); this.remove();">
+        <div class="portrait-label">
+          <strong>Zwe Htet Aung</strong>
+          <span>BIM & Digital Engineering</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-heading">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2>Projects, workflows and digital solutions.</h2>
+      </div>
+      <div class="project-toolbar">
+        <div class="filter-bar" id="filters"></div>
+        <div class="slider-controls" aria-label="Project carousel controls">
+          <button id="slide-left" aria-label="Scroll projects left">←</button>
+          <button id="slide-right" aria-label="Scroll projects right">→</button>
+        </div>
+      </div>
+      <div class="project-rail" id="project-grid" tabindex="0" aria-label="Project carousel"></div>
+      <noscript><p class="no-script">Enable JavaScript to browse the project case studies. You can still explore my career, skills and contact information below.</p></noscript>
+      <div class="carousel-indicators" id="carousel-indicators" aria-label="Choose a project"></div>
+    </section>
+
+
+
+    <section class="section journey-section" id="journey">
+      <div class="section-heading timeline-heading">
+        <p class="eyebrow">CAREER JOURNEY</p>
+        <h2>From drafting to digital engineering.</h2>
+        <p class="section-intro">A career built through project delivery, coordination, leadership and continuous experimentation with new tools.</p>
+      </div>
+
+      <div class="career-timeline" aria-label="Career timeline">
+        <article class="timeline-item reveal timeline-left">
+          <div class="timeline-year">2014</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Cleantec Engineering</span>
+            <h3>Drafter</h3>
+            <p>Started my Singapore career producing cleanroom layouts, fabrication drawings and technical coordination information.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal timeline-right">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Wesmech · Wah Loon</span>
+            <h3>Electrical Project Engineer</h3>
+            <p>Combined site delivery, electrical and ELV coordination with my first practical Revit and BIM responsibilities.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal timeline-left">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Puretec Engineering</span>
+            <h3>BIM Coordinator</h3>
+            <p>Represented the company in multidisciplinary coordination, managed live model updates and supported junior modellers.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal timeline-right">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Woh Hup</span>
+            <h3>BIM Designer · M&amp;E BIM Lead</h3>
+            <p>Delivered coordination across residential and PPVC projects while expanding into 4D, swept paths, VR, 3D printing and Revit automation.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal timeline-left timeline-future">
+          <div class="timeline-year">NEXT</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <span class="timeline-company">Future Direction</span>
+            <h3>Digital Engineering &amp; BIM Development</h3>
+            <p>Building toward a role where BIM delivery, automation, visualisation and digital products come together.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section skills-section" id="skills">
+      <div class="section-heading">
+        <p class="eyebrow">CAPABILITIES</p>
+        <h2>Tools are useful. Workflows create value.</h2>
+        <p class="section-intro">My strongest skill is connecting construction knowledge with the right digital method.</p>
+      </div>
+
+      <div class="stats-grid reveal-stagger">
+        <article class="stat-card"><strong class="counter" data-target="10" data-suffix="+">10+</strong><span>Years in Singapore projects</span></article>
+        <article class="stat-card"><strong class="counter" data-target="6" data-suffix="+">6+</strong><span>Digital capability areas</span></article>
+        <article class="stat-card"><strong class="counter" data-target="12" data-suffix="+">12+</strong><span>Core software tools</span></article>
+        <article class="stat-card"><strong class="counter" data-target="3" data-suffix="">3</strong><span>Disciplines coordinated</span></article>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <span class="skill-index">01</span>
+          <h3>BIM Coordination</h3>
+          <p>Revit modelling, multidisciplinary coordination, clash review, constructability and coordinated issue communication.</p>
+          <div class="software-grid" aria-label="BIM coordination software">
+            <div class="software-item"><img src="assets/images/software/revit.svg" alt="Revit logo"><span>Revit</span></div>
+            <div class="software-item"><img src="assets/images/software/navisworks.svg" alt="Navisworks logo"><span>Navisworks</span></div>
+            <div class="software-item"><img src="assets/images/software/dalux.svg" alt="Dalux logo"><span>Dalux</span></div>
+            <div class="software-item"><img src="assets/images/software/acc.svg" alt="Autodesk Construction Cloud logo"><span>ACC</span></div>
+          </div>
+        </article>
+        <article class="skill-card reveal">
+          <span class="skill-index">02</span>
+          <h3>Automation &amp; Development</h3>
+          <p>Turning repetitive BIM workflows into practical tools, interfaces and repeatable digital processes.</p>
+          <div class="software-grid" aria-label="Automation and development software">
+            <div class="software-item"><img src="assets/images/software/csharp.svg" alt="C sharp logo"><span>C#</span></div>
+            <div class="software-item"><img src="assets/images/software/python.svg" alt="Python logo"><span>Python</span></div>
+            <div class="software-item"><img src="assets/images/software/visual-studio.svg" alt="Visual Studio logo"><span>Visual Studio</span></div>
+            <div class="software-item"><img src="assets/images/software/pyrevit.svg" alt="pyRevit logo"><span>pyRevit</span></div>
+          </div>
+        </article>
+        <article class="skill-card reveal">
+          <span class="skill-index">03</span>
+          <h3>Construction Visualisation</h3>
+          <p>Explaining programme, sequence, access and spatial intent through clear visual storytelling.</p>
+          <div class="software-grid" aria-label="Construction visualisation software">
+            <div class="software-item"><img src="assets/images/software/blender.svg" alt="Blender logo"><span>Blender</span></div>
+            <div class="software-item"><img src="assets/images/software/twinmotion.svg" alt="Twinmotion logo"><span>Twinmotion</span></div>
+            <div class="software-item"><img src="assets/images/software/enscape.svg" alt="Enscape logo"><span>Enscape</span></div>
+            <div class="software-item"><img src="assets/images/software/vr.svg" alt="VR icon"><span>VR</span></div>
+          </div>
+        </article>
+        <article class="skill-card reveal">
+          <span class="skill-index">04</span>
+          <h3>Analysis &amp; Fabrication</h3>
+          <p>Vehicle movement studies and BIM-to-print workflows that turn digital information into decisions and physical models.</p>
+          <div class="software-grid" aria-label="Analysis and fabrication software">
+            <div class="software-item"><img src="assets/images/software/swept-path.svg" alt="Swept path analysis icon"><span>Swept Path</span></div>
+            <div class="software-item"><img src="assets/images/software/blender.svg" alt="Blender logo"><span>Blender</span></div>
+            <div class="software-item"><img src="assets/images/software/3d-printing.svg" alt="3D printing icon"><span>3D Printing</span></div>
+            <div class="software-item"><img src="assets/images/software/autocad.svg" alt="AutoCAD logo"><span>AutoCAD</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div>
+        <p class="eyebrow">ABOUT</p>
+        <h2>Practical BIM experience with a digital mindset.</h2>
+      </div>
+      <p>
+        I combine construction coordination experience with modelling, visualisation
+        and software development. My work focuses on resolving real project constraints,
+        improving repetitive workflows and communicating complex information clearly.
+      </p>
+    </section>
+
+    <section class="section contact" id="contact">
+      <p class="eyebrow">CONTACT</p>
+      <h2>Let’s discuss BIM and digital construction.</h2>
+      <a class="button primary" href="mailto:zwehtetaung1992@gmail.com">Email me</a>
+      <a class="button secondary"
+   href="https://www.linkedin.com/in/zwe-htet-aung/"
+   target="_blank"
+   rel="noopener">
+  LinkedIn
+</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Zwe Htet Aung. Built with HTML, CSS and JavaScript.</p>
+  </footer>
+</body>
+</html>
