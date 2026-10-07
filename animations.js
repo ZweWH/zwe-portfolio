@@ -39,7 +39,7 @@
     document.querySelectorAll('.hero-content, .project-hero, .stats-grid, .skills-grid, .gallery-grid, .story-grid, .project-meta-grid, .video-grid').forEach(group => {
       Array.from(group.children).forEach((child, i) => child.style.setProperty('--reveal-delay', `${Math.min(i, 3) * 75}ms`));
     });
-    const targets = document.querySelectorAll('.hero-content > *, .portrait-card, .section-heading, .project-toolbar, .project-card, .timeline-item, .stat-card, .skill-card, .about > *, .contact > *, .project-hero > *, .project-cover, .project-meta-grid > *, .two-column > *, .story-card, .gallery-item, .video-card, .comparison, .next-project');
+    const targets = document.querySelectorAll('.hero-content > *, .hero-showcase, .hero-footnote, .portrait-card, .section-heading, .project-toolbar, .project-card, .timeline-item, .stat-card, .skill-card, .about > *, .contact > *, .project-hero > *, .project-cover, .project-meta-grid > *, .two-column > *, .story-card, .gallery-item, .video-card, .comparison, .next-project');
     if (enabled && !observer) {
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });

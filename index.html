@@ -10,14 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="motion.css?v=8.1">
+  <link rel="stylesheet" href="overview.css?v=9">
+  <link rel="stylesheet" href="overview-sections.css?v=9">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#f5f5f7">
+  <meta name="theme-color" content="#fcfcfc">
   <meta property="og:title" content="Zwe Htet Aung | BIM & Digital Engineering">
   <meta property="og:description" content="BIM coordination, Revit automation and digital construction. Explore my selected work and career journey.">
   <meta property="og:type" content="website">
   <script src="projects.js" defer></script>
   <script src="home.js?v=8.1" defer></script>
-  <script src="animations.js" defer></script>
+  <script src="showcase.js?v=9" defer></script>
+  <script src="animations.js?v=9" defer></script>
 </head>
 <body class="page-enter">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -28,32 +31,56 @@
       <a href="#journey">Journey</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
-      <a href="assets/documents/Zwe-Htet-Aung-CV.pdf">Resume</a>
     </nav>
+    <a class="header-cta" href="assets/documents/Zwe-Htet-Aung-CV.pdf">Resume <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="main-content">
-    <section class="hero hero-split" id="home">
+    <section class="hero hero-intro" id="home">
       <div class="hero-content">
-        <p class="eyebrow">BIM · AUTOMATION · DIGITAL CONSTRUCTION</p>
-        <h1>Building smarter ways to coordinate, explain and deliver construction.</h1>
+        <p class="eyebrow">ZWE HTET AUNG · BIM & DIGITAL ENGINEERING</p>
+        <h1>Build smarter.<br>Think <span class="gradient-word">digital.</span></h1>
         <p class="hero-copy">
-          BIM Designer focused on MEP coordination, Revit automation, 4D sequencing,
-          vehicle analysis, VR and digital fabrication.
+          I connect construction knowledge with BIM, automation and visualisation.
+          Turning complex projects into clearer possibilities.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#work">View selected work</a>
-          <a class="button secondary" href="assets/documents/Zwe-Htet-Aung-CV.pdf">Download CV</a>
-        </div>
-        <a class="scroll-cue" href="#work"><span aria-hidden="true">↓</span> Explore my work</a>
-      </div>
-      <div class="portrait-card" data-placeholder="Portrait of Zwe Htet Aung">
-        <img src="assets/images/profile-photo-2.png" alt="Portrait of Zwe Htet Aung" fetchpriority="high" decoding="async" onerror="this.closest('.portrait-card').classList.add('missing-media'); this.remove();">
-        <div class="portrait-label">
-          <strong>Zwe Htet Aung</strong>
-          <span>BIM & Digital Engineering</span>
+          <a class="button primary" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+          <a class="button text-button" href="#about">A little about me <span aria-hidden="true">↗</span></a>
         </div>
       </div>
+
+      <div class="hero-showcase">
+        <div class="showcase-note note-left" aria-hidden="true"><span class="note-mark">↗</span>From model<br>to possibility.</div>
+        <svg class="showcase-cube" viewBox="0 0 120 140" fill="none" aria-hidden="true"><path d="M60 8 109 36v66L60 132 11 102V36L60 8Z M11 36l49 29 49-29M60 65v67M60 8v57M11 102l49-37 49 37" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <div class="showcase-frame">
+          <div class="showcase-topbar">
+            <span class="showcase-window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span>A window into my work</span>
+            <span class="showcase-frame-mark" aria-hidden="true">↗</span>
+          </div>
+          <div class="showcase-tabs" role="tablist" aria-label="Explore my workflows">
+            <button id="tab-visualise" role="tab" aria-selected="true" aria-controls="panel-visualise" data-scene="visualise">Visualise</button>
+            <button id="tab-coordinate" role="tab" aria-selected="false" aria-controls="panel-coordinate" data-scene="coordinate" tabindex="-1">Coordinate</button>
+            <button id="tab-analyse" role="tab" aria-selected="false" aria-controls="panel-analyse" data-scene="analyse" tabindex="-1">Analyse</button>
+          </div>
+          <div class="showcase-panel" id="panel-visualise" role="tabpanel" aria-labelledby="tab-visualise" tabindex="0">
+            <img src="assets/images/4d-cover.jpg" alt="Architectural visualisation of a residential development" width="592" height="444" fetchpriority="high" decoding="async">
+            <div class="showcase-caption"><div><span>VISUALISATION & 4D</span><h2>See the bigger picture.</h2></div><a href="project.html?id=4d-sequencing" aria-label="Explore 4D construction sequencing">Explore project <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="showcase-panel" id="panel-coordinate" role="tabpanel" aria-labelledby="tab-coordinate" tabindex="0" hidden>
+            <img src="assets/images/mep-cover.png" alt="Coordinated building services in a Revit MEP model" loading="lazy" decoding="async">
+            <div class="showcase-caption"><div><span>BIM COORDINATION</span><h2>Bring every discipline together.</h2></div><a href="project.html?id=mep-coordination" aria-label="Explore MEP coordination">Explore project <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="showcase-panel" id="panel-analyse" role="tabpanel" aria-labelledby="tab-analyse" tabindex="0" hidden>
+            <img src="assets/images/swept-cover.png" alt="Vehicle swept-path analysis of constrained construction access" loading="lazy" decoding="async">
+            <div class="showcase-caption"><div><span>VEHICLE ANALYSIS</span><h2>Make space for better decisions.</h2></div><a href="project.html?id=vehicle-swept-path" aria-label="Explore vehicle swept-path analysis">Explore project <span aria-hidden="true">↗</span></a></div>
+          </div>
+        </div>
+        <div class="showcase-person"><img src="assets/images/profile-photo-2.png" alt="Zwe Htet Aung" width="56" height="56" loading="lazy"><div><strong>Zwe Htet Aung</strong><span>BIM Designer · Singapore</span></div></div>
+        <div class="showcase-note note-right" aria-hidden="true"><span class="code-mark">{ }</span><span>Construction mindset.<br>Digital toolkit.</span></div>
+      </div>
+      <p class="hero-footnote">BIM coordination · Revit automation · 4D sequencing · VR · Digital fabrication</p>
     </section>
 
     <section class="section" id="work">
@@ -224,7 +251,9 @@
   </main>
 
   <footer>
-    <p>© <span id="year"></span> Zwe Htet Aung. Built with HTML, CSS and JavaScript.</p>
+    <a class="logo" href="#home">ZWE.</a>
+    <p>© <span id="year"></span> Zwe Htet Aung · BIM & Digital Engineering</p>
+    <a href="mailto:zwehtetaung1992@gmail.com">Let’s connect <span aria-hidden="true">↗</span></a>
   </footer>
 </body>
 </html>

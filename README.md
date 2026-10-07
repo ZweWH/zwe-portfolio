@@ -14,6 +14,8 @@ https://zwewh.github.io/zwe-portfolio/
 - `home.js`: project filters and accessible carousel with optional automatic scrolling.
 - `project.js`: shared case-study rendering, comparison slider and image lightbox.
 - `styles.css`: base visual design.
+- `overview.css` and `overview-sections.css`: centered hero, layered project showcase and minimal section styling.
+- `showcase.js`: accessible workflow tabs in the hero, including arrow-key navigation.
 - `motion.css` and `animations.js`: subtle one-time reveals, staggered entrances, hover effects, reading progress and active navigation.
 - `assets/`: project media, software icons and downloadable CV.
 
@@ -28,7 +30,7 @@ Open the folder in VS Code and use Live Server, or run `python -m http.server 80
 Commit and push changes to `main`. GitHub Pages publishes the root folder automatically. The `.nojekyll` file tells Pages to serve these static files directly. Check the repository's Actions tab for deployment status.
 
 ```sh
-git add index.html project.html projects.js home.js project.js styles.css motion.css animations.js assets
+git add index.html project.html projects.js home.js project.js styles.css motion.css animations.js overview.css overview-sections.css showcase.js
 git commit -m "Update portfolio"
 git push
 ```
@@ -39,6 +41,7 @@ In repository Settings → Pages, the source should be **Deploy from a branch**,
 
 - Native smooth anchor scrolling and browser page transitions where supported.
 - One-time reveals, with staggered hero text and capability cards.
+- Interactive Visualise, Coordinate and Analyse tabs feature real project images and case-study links.
 - The carousel advances every 3 seconds, with the active dot filling to show the countdown. There is no vertical-wheel interception.
 - Automatic scrolling pauses while hovering over the rail, focusing it with the keyboard, touching it, scrolling it out of view or switching browser tabs. The Pause/Play control also lets visitors pause it explicitly.
 - Carousel arrows, touch/trackpad scrolling and keyboard arrows/Home/End when the rail is focused.
