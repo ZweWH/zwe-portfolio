@@ -1,6 +1,7 @@
 /* Content remains readable when JavaScript or animation is unavailable. */
 :root { --motion-ease: cubic-bezier(.22, 1, .36, 1); }
 html { scroll-padding-top: 100px; }
+#work { width: 100%; margin-inline: 0; padding-inline: 0; }
 body.page-enter, body.page-enter.page-ready, body.page-leave {
   opacity: 1; transform: none; transition: none;
 }
